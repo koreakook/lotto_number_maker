@@ -314,36 +314,96 @@ body {
 }
 
 /* Mobile Optimization */
+.generate-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.generate-wrapper:has(.hidden) {
+  display: none;
+}
+
 @media (max-width: 600px) {
   .glass-container {
-    padding: 1.5rem;
+    padding: 1rem;
     width: 95%;
+    max-height: 90vh;
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
   }
 
   .neon-text {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .number-display {
+    min-height: 60px;
+    margin-bottom: 1rem;
+    gap: 0.5rem;
+  }
+
+  .lotto-ball {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .step-container {
+    margin-bottom: 1rem;
+  }
+
+  .question-text {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .button-group {
+    gap: 0.5rem;
+  }
+
+  .choice-btn,
+  .count-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
   }
 
   .number-grid {
     grid-template-columns: repeat(9, 1fr);
     gap: 0.2rem;
+    margin-top: 0.5rem;
   }
 
   .grid-btn {
     font-size: 0.7rem;
     padding: 0;
+    border-width: 1px;
   }
 
-  .lotto-ball {
-    width: 50px;
-    height: 50px;
-    font-size: 1.2rem;
+  .generate-wrapper {
+    position: sticky;
+    bottom: -1rem; /* Stick to bottom of container including padding */
+    margin: 0 -1rem -1rem -1rem; /* Negative margins to stretch full width */
+    padding: 1rem;
+    background: rgba(15, 12, 41, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 20;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
   }
 
-  .choice-btn,
-  .count-btn {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.9rem;
+  .generate-wrapper:has(.hidden) {
+    display: none;
+  }
+
+  .neon-button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    margin-top: 0;
+    width: 100%; /* Full width button on mobile for easier tap */
+    max-width: 300px;
   }
 }
