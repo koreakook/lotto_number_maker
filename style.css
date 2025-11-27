@@ -1,0 +1,344 @@
+:root {
+  --bg-color: #0f0c29;
+  --bg-gradient: linear-gradient(30deg, #0f0c29, #302b63, #24243e);
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00de;
+  --neon-yellow: #ffe600;
+  --text-color: #ffffff;
+}
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-color);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#app {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background blobs for effect */
+#app::before,
+#app::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: -1;
+}
+
+#app::before {
+  background: var(--neon-pink);
+  top: 20%;
+  left: 20%;
+  animation: float 6s infinite ease-in-out;
+}
+
+#app::after {
+  background: var(--neon-blue);
+  bottom: 20%;
+  right: 20%;
+  animation: float 8s infinite ease-in-out reverse;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(30px, -30px);
+  }
+}
+
+.glass-container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  width: 90%;
+  max-width: 600px;
+  position: relative;
+  z-index: 10;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.neon-text {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff,
+    0 0 42px var(--neon-pink), 0 0 82px var(--neon-pink),
+    0 0 92px var(--neon-pink);
+  animation: flicker 1.5s infinite alternate;
+}
+
+@keyframes flicker {
+  0%,
+  18%,
+  22%,
+  25%,
+  53%,
+  57%,
+  100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff,
+      0 0 40px var(--neon-pink), 0 0 80px var(--neon-pink),
+      0 0 90px var(--neon-pink);
+  }
+  20%,
+  24%,
+  55% {
+    text-shadow: none;
+  }
+}
+
+.number-display {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  min-height: 80px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 11;
+}
+
+.placeholder-text {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  align-self: center;
+}
+
+.lotto-ball {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 30% 30%,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.1)
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  box-shadow: inset -5px -5px 10px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  opacity: 0;
+  transform: scale(0);
+}
+
+/* Ball Colors based on Korean Lotto */
+.ball-yellow {
+  background-color: #fbc400;
+  box-shadow: 0 0 15px #fbc400;
+} /* 1-10 */
+.ball-blue {
+  background-color: #69c8f2;
+  box-shadow: 0 0 15px #69c8f2;
+} /* 11-20 */
+.ball-red {
+  background-color: #ff7272;
+  box-shadow: 0 0 15px #ff7272;
+} /* 21-30 */
+.ball-gray {
+  background-color: #aaaaaa;
+  box-shadow: 0 0 15px #aaaaaa;
+} /* 31-40 */
+.ball-green {
+  background-color: #b0d840;
+  box-shadow: 0 0 15px #b0d840;
+} /* 41-45 */
+
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.neon-button {
+  background: transparent;
+  border: 2px solid var(--neon-blue);
+  color: var(--neon-blue);
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.neon-button:hover {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 20px var(--neon-blue), 0 0 40px var(--neon-blue);
+}
+
+.neon-button:active {
+  transform: scale(0.95);
+}
+
+/* Step Containers */
+.step-container {
+  margin-bottom: 2rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.question-text {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.choice-btn,
+.count-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.choice-btn:hover,
+.count-btn:hover {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-blue);
+  border-color: var(--neon-blue);
+}
+
+.choice-btn.selected,
+.count-btn.selected {
+  background: var(--neon-blue);
+  color: #000;
+  box-shadow: 0 0 15px var(--neon-blue);
+  border-color: var(--neon-blue);
+}
+
+.hidden {
+  display: none;
+}
+
+.number-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.grid-btn {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.grid-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.grid-btn.selected {
+  background: var(--neon-blue);
+  color: #000;
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.grid-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Mobile Optimization */
+@media (max-width: 600px) {
+  .glass-container {
+    padding: 1.5rem;
+    width: 95%;
+  }
+
+  .neon-text {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .number-grid {
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.2rem;
+  }
+
+  .grid-btn {
+    font-size: 0.7rem;
+    padding: 0;
+  }
+
+  .lotto-ball {
+    width: 50px;
+    height: 50px;
+    font-size: 1.2rem;
+  }
+
+  .choice-btn,
+  .count-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+}
